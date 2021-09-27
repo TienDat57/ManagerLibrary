@@ -24,5 +24,8 @@
     <ClInclude Include="Header\functionSQL.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="Header\g_class.h">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

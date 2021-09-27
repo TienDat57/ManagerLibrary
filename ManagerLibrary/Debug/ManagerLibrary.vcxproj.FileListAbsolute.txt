@@ -1,2 +1,4 @@
 D:\ManagerLibrary\Debug\ManagerLibrary.exe
 D:\ManagerLibrary\Debug\ManagerLibrary.pdb
+D:\code\ManagerLibrary\ManagerLibrary\Debug\ManagerLibrary.exe
+D:\code\ManagerLibrary\ManagerLibrary\Debug\ManagerLibrary.pdb
