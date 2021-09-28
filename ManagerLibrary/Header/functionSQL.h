@@ -1,8 +1,12 @@
 #pragma once
+
 #include <iostream>
 #include <sqlite3.h>
 
 using namespace std;
+
+const char* dirBook = R"(.\Database\Book.db)";
+const char* dirMember = R"(.\Database\Member.db)";
 
 static int createDB(const char* dir);
 static int createTable(const char* dir, string databaseName);
@@ -29,22 +33,19 @@ static int createTable(const char* dir, string databaseName)
 	if (databaseName == "book")
 	{
 		sql = "CREATE TABLE IF NOT EXISTS BOOK("
-			"ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-			"NAME      TEXT NOT NULL, "
-			"LNAME     TEXT NOT NULL, "
-			"AGE       INT  NOT NULL, "
-			"ADDRESS   CHAR(50), "
-			"GRADE     CHAR(1) );";
+			"Namebook	TEXT NOT NULL, "
+			"IDBook		VARCHAR(6) NOT NULL, "
+			"Category		TEXT NOT NULL, "
+			"Condition		CHAR(1), "
+			"Author		TEXT NOT NULL, "
+			"Number		INT NOT NULL ); ";
 	}
 	else if (databaseName == "member")
 	{
 		sql = "CREATE TABLE IF NOT EXISTS MEMBER("
-			"ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-			"NAME      TEXT NOT NULL, "
-			"LNAME     TEXT NOT NULL, "
-			"AGE       INT  NOT NULL, "
-			"ADDRESS   CHAR(50), "
-			"GRADE     CHAR(1) );";
+			"FULLNAME      TEXT NOT NULL, "
+			"DateCreateCard		DATE NOT NULL, "
+			"IDMember		INT NOT NULL ); ";
 	}
 
 	try
@@ -71,10 +72,6 @@ static int insertData(const char* dir, string dataInsert)
 {
 	sqlite3* DB;
 	char* messageError;
-
-	/*string sql("INSERT INTO GRADES (NAME, LNAME, AGE, ADDRESS, GRADE) VALUES('Alice', 'Chapa', 35, 'Tampa', 'A');"
-		"INSERT INTO GRADES (NAME, LNAME, AGE, ADDRESS, GRADE) VALUES('Bob', 'Lee', 20, 'Dallas', 'B');"
-		"INSERT INTO GRADES (NAME, LNAME, AGE, ADDRESS, GRADE) VALUES('Fred', 'Cooper', 24, 'New York', 'C');");*/
 
 	int exit = sqlite3_open(dir, &DB);
 	/* An open database, SQL to be evaluated, Callback function, 1st argument to callback, Error msg written here */
@@ -116,7 +113,6 @@ static int deleteData(const char* dir, string dataDelete)
 	//string sql = "DELETE FROM GRADES;";
 
 	int exit = sqlite3_open(dir, &DB);
-	/* An open database, SQL to be evaluated, Callback function, 1st argument to callback, Error msg written here */
 	exit = sqlite3_exec(DB, dataDelete.c_str(), callback, NULL, &messageError);
 	if (exit != SQLITE_OK) {
 		cerr << "Error in deleteData function." << endl;
@@ -148,12 +144,9 @@ static int selectData(const char* dir, string dataSelect)
 	return 0;
 }
 
-// retrieve contents of database used by selectData()
-/* argc: holds the number of results, argv: holds each value in array, azColName: holds each column returned in array, */
 static int callback(void* NotUsed, int argc, char** argv, char** azColName)
 {
 	for (int i = 0; i < argc; i++) {
-		// column name and value
 		cout << azColName[i] << ": " << argv[i] << endl;
 	}
 	cout << endl;
