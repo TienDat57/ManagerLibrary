@@ -7,6 +7,7 @@ using namespace std;
 
 const char* dirBook = R"(.\Database\Book.db)";
 const char* dirMember = R"(.\Database\Member.db)";
+const char* dirLibrary = R"(.\Database\Library.db)";
 
 static int createDB(const char* dir);
 static int createTable(const char* dir, string databaseName);
@@ -47,7 +48,15 @@ static int createTable(const char* dir, string databaseName)
 			"DateCreateCard		DATE NOT NULL, "
 			"IDMember		INT NOT NULL ); ";
 	}
-
+	else if (databaseName == "card")
+	{
+		sql = "CREATE TABLE IF NOT EXISTS CARD("
+			"IDCard      INT NOT NULL, "
+			"Timeout		INT NOT NULL, "
+			"ReturnDate		DATE NOT NULL, "
+			"IDMember		INT NOT NULL, "
+			"IDBook		VARCHAR(6) NOT NULL ); ";
+	}
 	try
 	{
 		int exit = sqlite3_open(dir, &DB);
