@@ -26,9 +26,7 @@ void library::classifyCategory(string category)
 	for (int i = 0; i < listBook.size(); i++)
 	{
 		for (int j = 0; j < listBook[i].size(); j++)
-		{
 			cout << listBook[i][j] << endl;
-		}
 		cout << endl;
 	}
 }

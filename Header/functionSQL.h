@@ -154,18 +154,14 @@ static int selectData(const char* dir, string dataSelect)
 }
 
 vector<vector<string>> listBook;
-static int count = 0;
 
 static int callback(void* NotUsed, int argc, char** argv, char** azColName)
 {
 	vector <string> temp;
-	for (int i = 0; i < argc; i++) {
+	for (int i = 0; i < argc; i++)
 		temp.push_back(argv[i]);
-	}
 	listBook.push_back(temp);
 	for (int i = 0; i < temp.size(); i++)
-	{
 		temp.pop_back();
-	}
 	return 0;
 }
