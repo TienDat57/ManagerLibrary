@@ -2,12 +2,13 @@
 
 #include <iostream>
 #include <sqlite3.h>
+#include <string>
+#include <vector>
 
 using namespace std;
 
-const char* dirBook = R"(.\Database\Book.db)";
-const char* dirMember = R"(.\Database\Member.db)";
 const char* dirLibrary = R"(.\Database\Library.db)";
+const char* dirBook = R"(.\Database\Book.db)";
 
 static int createDB(const char* dir);
 static int createTable(const char* dir, string databaseName);
@@ -17,7 +18,6 @@ static int updateData(const char* dir, string dataUpdate);
 static int selectData(const char* s, string dataSelect);
 static int callback(void* NotUsed, int argc, char** argv, char** azColName);
 
-
 static int createDB(const char* dir)
 {
 	sqlite3* DB;
@@ -26,29 +26,29 @@ static int createDB(const char* dir)
 	return 0;
 }
 
-static int createTable(const char* dir, string databaseName)
+static int createTable(const char* dir, string tableName)
 {
 	sqlite3* DB;
 	char* messageError;
 	string sql;
-	if (databaseName == "book")
+	if (tableName == "book")
 	{
 		sql = "CREATE TABLE IF NOT EXISTS BOOK("
-			"Namebook	TEXT NOT NULL, "
 			"IDBook		VARCHAR(6) NOT NULL, "
+			"Namebook	TEXT NOT NULL, "
 			"Category		TEXT NOT NULL, "
 			"Condition		CHAR(1), "
 			"Author		TEXT NOT NULL, "
 			"Number		INT NOT NULL ); ";
 	}
-	else if (databaseName == "member")
+	else if (tableName == "member")
 	{
 		sql = "CREATE TABLE IF NOT EXISTS MEMBER("
+			"IDMember		INT NOT NULL, "
 			"FULLNAME      TEXT NOT NULL, "
-			"DateCreateCard		DATE NOT NULL, "
-			"IDMember		INT NOT NULL ); ";
+			"DateCreateCard		DATE NOT NULL); ";
 	}
-	else if (databaseName == "card")
+	else if (tableName == "card")
 	{
 		sql = "CREATE TABLE IF NOT EXISTS CARD("
 			"IDCard      INT NOT NULL, "
@@ -153,11 +153,19 @@ static int selectData(const char* dir, string dataSelect)
 	return 0;
 }
 
+vector<vector<string>> listBook;
+static int count = 0;
+
 static int callback(void* NotUsed, int argc, char** argv, char** azColName)
 {
+	vector <string> temp;
 	for (int i = 0; i < argc; i++) {
-		cout << azColName[i] << ": " << argv[i] << endl;
+		temp.push_back(argv[i]);
 	}
-	cout << endl;
+	listBook.push_back(temp);
+	for (int i = 0; i < temp.size(); i++)
+	{
+		temp.pop_back();
+	}
 	return 0;
 }

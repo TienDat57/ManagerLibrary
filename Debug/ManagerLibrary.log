@@ -1,2 +1,5 @@
 ﻿  Main.cpp
-  ManagerLibrary.vcxproj -> C:\Users\Admin\OneDrive\Máy tính\Library Manager\ManagerLibrary\Debug\ManagerLibrary.exe
+D:\ManagerLibrary\Header\functionSQL.h(166,20): warning C4018: '<': signed/unsigned mismatch
+D:\ManagerLibrary\Header\libraryFun.h(26,20): warning C4018: '<': signed/unsigned mismatch
+D:\ManagerLibrary\Header\libraryFun.h(28,21): warning C4018: '<': signed/unsigned mismatch
+  ManagerLibrary.vcxproj -> D:\ManagerLibrary\Debug\ManagerLibrary.exe

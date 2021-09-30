@@ -3,12 +3,34 @@
 #include "functionSQL.h"
 #include "g_class.h"
 
-bool library::checkStatusBook()
+bool library::checkStatusBook(string idBook)
 {
-	
-	string select("SELECT * FROM BOOK WHERE CONDITION = '0';");
-	selectData(dirBook, select);
-	return 0;
+	string select("SELECT * FROM BOOK WHERE IDBook = '" + idBook + "'");
+	selectData(dirLibrary, select);
+	if (listBook[0][3] == "0")
+		return false;
+	return true;
+}
+
+void library::removeBook(string idBook)
+{
+	string dataDelete("DELETE FROM COMPANY WHERE IDBook = '" + idBook + "'");
+	deleteData(dirLibrary, dataDelete);
+}
+
+void library::classifyCategory(string category)
+{
+	string select("SELECT * FROM BOOK WHERE Category = '" + category + "'");
+	selectData(dirLibrary, select);
+	cout << "Danh sach the loai " << category << endl;
+	for (int i = 0; i < listBook.size(); i++)
+	{
+		for (int j = 0; j < listBook[i].size(); j++)
+		{
+			cout << listBook[i][j] << endl;
+		}
+		cout << endl;
+	}
 }
 
 vector<string> split(const string& s, const char delim)

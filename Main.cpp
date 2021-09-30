@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	string s ("INSERT INTO CARD VALUES (0002, 10 , '2021-12-30', 20127011, 'TC0102')");
-	insertData(dirLibrary, s);
+	library l;
+	l.classifyCategory("XXX");
 	return 0;
 }

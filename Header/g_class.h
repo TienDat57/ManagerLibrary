@@ -30,13 +30,13 @@ private:
 
 public:
 	//book
-	bool checkStatusBook();  // đặng tiến đạt
+	bool checkStatusBook(string idBook);  // đặng tiến đạt
 	void insertBook(book key, int quantity);   //lê tấn đạt
 	vector<class book> searchBook(); // phạm thị ánh phát
-	void removeBook(); // đặng tiến đạt
+	void removeBook(string idBook); // đặng tiến đạt
 	void sortBookId();   //lê tấn đạt
 	void sortBookName(); // phạm thì ánh phát
-	void classifyCategory(); // đặng tiến đạt
+	void classifyCategory(string category); // đặng tiến đạt
 	void outOfDateBorrow(); // lê tấn đạt
 
 	//member
