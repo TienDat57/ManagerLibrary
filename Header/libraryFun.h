@@ -1,4 +1,5 @@
 ﻿#pragma once
+#pragma warning(disable:4996)
 
 #include "functionSQL.h"
 #include "g_class.h"
@@ -53,7 +54,7 @@ vector<string> split(const string& s, const char delim)
 void library::insertBook(book key, int quantity)
 {
 	//string name = key.idBook.substr(0, 4);
-	string select("SELECT * FROM BOOK WHERE NAMEBOOK =" + key.nameBook + ";");
+	string select("SELECT * FROM BOOK WHERE NAMEBOOK =" + key.getName() + ";");
 	if (selectData(dirBook, select))
 	{
 		cout << "Insert succeed" << endl;
@@ -71,3 +72,89 @@ void library::insertBook(book key, int quantity)
 	}
 }
 
+char* convertStr(string s) {
+	int n = s.length();
+
+	// declaring character array
+	char* char_array = new char[n + 1];
+
+	strcpy(char_array, s.c_str());
+	return char_array;
+}
+
+vector<vector<string>> library::sortBookName() {
+	char t [50];
+	string select("SELECT * FROM BOOK"); 
+	selectData(dirLibrary, select);
+	for (int i = 1; i < listBook.size(); i++)
+	{
+		for (int j = 1; j < listBook.size(); j++)
+		{
+			if (strcmp(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]) > 0)
+			{
+				strcpy(t, &convertStr(listBook[i][0])[j - 1] );
+				strcpy(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]);
+				strcpy(&convertStr(listBook[i][0])[j], t);
+			}
+		}
+	}
+	return listBook;
+}
+
+vector<string> library::searchBook( string nameBook) {
+	vector<string> a;
+	string select("SELECT * FROM BOOK WHERE Category = '" + nameBook + "'");
+	if (selectData(dirLibrary, select)) {
+		for (int i = 0;i < listBook.size();i++) {
+			if (listBook[i][0] == nameBook) {
+				return listBook[i];
+			}
+		}
+	}
+	else {
+		return a;
+	}
+	
+	
+}
+
+vector<vector<string>>  member::sortMember() {
+	char t[50];
+	string select("SELECT * FROM MEMBER ");
+	selectData(dirLibrary, select);
+	for (int i = 1; i < listBook.size(); i++)
+	{
+		for (int j = 1; j < listBook.size(); j++)
+		{
+			if (strcmp(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]) > 0)
+			{
+				strcpy_s(t, &convertStr(listBook[i][0])[j - 1]);
+				strcpy(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]);
+				strcpy(&convertStr(listBook[i][0])[j], t);
+			}
+		}
+	}
+	return listBook;
+}
+
+int member::registerMember(string fullName, int id) {
+
+	string select("SELECT FULLNAME, IDMember FROM BOOK WHERE FULLNAME = '" + fullName + /*"' AND IDMember = '" + to_string(id) +*/ "'");
+	if (selectData(dirLibrary, select)) {
+		// thong bao da co tai khoan
+		return 0;
+	}
+	else {
+		string data("INSERT INTO MEMBER (FULLNAME, IDMember, DateCreateCard) VALUES('phatxindep', 203943, 'now');");
+
+		/*string data("INSERT INTO MEMBER (FULLNAME, IDMember, DateCreateCard) VALUES( '");
+		data += fullName;
+		data += ", '";
+		data += to_string(id);
+		data += ", '";
+		data += 'now';
+		data += "');";*/
+		return insertData(dirLibrary, data) ;
+		
+	}
+}

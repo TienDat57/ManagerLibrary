@@ -153,7 +153,7 @@ static int selectData(const char* dir, string dataSelect)
 	return 0;
 }
 
-vector<vector<string>> listBook;
+vector<vector<string>> listBook; // all features
 
 static int callback(void* NotUsed, int argc, char** argv, char** azColName)
 {
