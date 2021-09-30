@@ -4,8 +4,6 @@ D:\ManagerLibrary\Header\libraryFun.h(27,20): warning C4018: '<': signed/unsigne
 D:\ManagerLibrary\Header\libraryFun.h(29,21): warning C4018: '<': signed/unsigned mismatch
 D:\ManagerLibrary\Header\libraryFun.h(89,20): warning C4018: '<': signed/unsigned mismatch
 D:\ManagerLibrary\Header\libraryFun.h(91,21): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary\Header\libraryFun.h(108,20): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary\Header\libraryFun.h(125,20): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary\Header\libraryFun.h(127,21): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary\Header\libraryFun.h(119): warning C4715: 'library::searchBook': not all control paths return a value
+D:\ManagerLibrary\Header\libraryFun.h(118,20): warning C4018: '<': signed/unsigned mismatch
+D:\ManagerLibrary\Header\libraryFun.h(120,21): warning C4018: '<': signed/unsigned mismatch
   ManagerLibrary.vcxproj -> D:\ManagerLibrary\Debug\ManagerLibrary.exe

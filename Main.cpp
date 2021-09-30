@@ -6,21 +6,14 @@ using namespace std;
 
 int main()
 {
-	library l{};
-	l.classifyCategory("XXX");
+	library l;
+	vector<vector<string>> lb = l.searchBook("L");
+	for (size_t i = 0; i < lb.size(); i++)
+	{
+		for (size_t j = 0; j < lb[i].size(); j++)
+			cout << lb[i][j] << endl;
+		cout << endl;
+	}
 
-	/*vector<string> s = l.searchBook("AD30CF");
-
-	for (int i = 0;i < s.size();i++) {
-		cout << s[i] << endl;
-	}*/
-
-	member Mem{};
-
-	cout << Mem.registerMember("tandat", 20127011);
-	/*vector<vector<string>> s = Mem.sortMember();
-	for (int i = 0;i < s.size();i++) {
-		cout << s[i][1] << endl;
-	}*/
 	return 0;
 }

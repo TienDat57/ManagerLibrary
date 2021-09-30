@@ -83,8 +83,8 @@ char* convertStr(string s) {
 }
 
 vector<vector<string>> library::sortBookName() {
-	char t [50];
-	string select("SELECT * FROM BOOK"); 
+	char t[50];
+	string select("SELECT * FROM BOOK");
 	selectData(dirLibrary, select);
 	for (int i = 1; i < listBook.size(); i++)
 	{
@@ -92,7 +92,7 @@ vector<vector<string>> library::sortBookName() {
 		{
 			if (strcmp(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]) > 0)
 			{
-				strcpy(t, &convertStr(listBook[i][0])[j - 1] );
+				strcpy(t, &convertStr(listBook[i][0])[j - 1]);
 				strcpy(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]);
 				strcpy(&convertStr(listBook[i][0])[j], t);
 			}
@@ -101,21 +101,13 @@ vector<vector<string>> library::sortBookName() {
 	return listBook;
 }
 
-vector<string> library::searchBook( string nameBook) {
-	vector<string> a;
-	string select("SELECT * FROM BOOK WHERE Category = '" + nameBook + "'");
-	if (selectData(dirLibrary, select)) {
-		for (int i = 0;i < listBook.size();i++) {
-			if (listBook[i][0] == nameBook) {
-				return listBook[i];
-			}
-		}
-	}
-	else {
-		return a;
-	}
-	
-	
+vector<vector<string>> library::searchBook(string nameBook) {
+	vector<vector<string>> a;
+	string select("SELECT * FROM BOOK WHERE Namebook GLOB '*" + nameBook + "*'");
+	selectData(dirLibrary, select);
+	if (listBook.size() > 0)
+		return listBook;
+	return a;
 }
 
 vector<vector<string>>  member::sortMember() {
@@ -154,7 +146,7 @@ int member::registerMember(string fullName, int id) {
 		data += ", '";
 		data += 'now';
 		data += "');";*/
-		return insertData(dirLibrary, data) ;
-		
+		return insertData(dirLibrary, data);
+
 	}
 }

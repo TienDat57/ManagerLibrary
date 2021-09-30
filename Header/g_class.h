@@ -44,7 +44,7 @@ public:
 
 	void insertBook(book key, int quantity);   //lê tấn đạt
 
-	vector<string> searchBook( string nameBook); // phạm thị ánh phát
+	vector<vector<string>> searchBook(string nameBook); // phạm thị ánh phát
 
 	void removeBook(string idBook); // đặng tiến đạt
 
