@@ -83,21 +83,10 @@ char* convertStr(string s) {
 }
 
 vector<vector<string>> library::sortBookName() {
-	char t[50];
-	string select("SELECT * FROM BOOK");
+	char t[50]{};
+	string select("SELECT * FROM BOOK ORDER BY Namebook ASC");
 	selectData(dirLibrary, select);
-	for (int i = 1; i < listBook.size(); i++)
-	{
-		for (int j = 1; j < listBook.size(); j++)
-		{
-			if (strcmp(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]) > 0)
-			{
-				strcpy(t, &convertStr(listBook[i][0])[j - 1]);
-				strcpy(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]);
-				strcpy(&convertStr(listBook[i][0])[j], t);
-			}
-		}
-	}
+	
 	return listBook;
 }
 
@@ -112,40 +101,25 @@ vector<vector<string>> library::searchBook(string nameBook) {
 
 vector<vector<string>>  member::sortMember() {
 	char t[50];
-	string select("SELECT * FROM MEMBER ");
+	string select("SELECT * FROM MEMBER ORDER BY FULLNAME ASC ");
 	selectData(dirLibrary, select);
-	for (int i = 1; i < listBook.size(); i++)
-	{
-		for (int j = 1; j < listBook.size(); j++)
-		{
-			if (strcmp(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]) > 0)
-			{
-				strcpy_s(t, &convertStr(listBook[i][0])[j - 1]);
-				strcpy(&convertStr(listBook[i][0])[j - 1], &convertStr(listBook[i][0])[j]);
-				strcpy(&convertStr(listBook[i][0])[j], t);
-			}
-		}
-	}
+	
 	return listBook;
 }
 
 int member::registerMember(string fullName, int id) {
+	string select("SELECT * FROM MEMBER WHERE FULLNAME = '" + fullName + "' AND IDMember = '" + to_string(id) + "'");
+	string sql("SELECT * FROM MEMBER;");
+	selectData(dirLibrary, sql);
 
-	string select("SELECT FULLNAME, IDMember FROM BOOK WHERE FULLNAME = '" + fullName + /*"' AND IDMember = '" + to_string(id) +*/ "'");
-	if (selectData(dirLibrary, select)) {
+	if (checkExist(dirLibrary, "MEMBER", fullName, 1)) {
 		// thong bao da co tai khoan
+		cout << "account already existed!\n ";
 		return 0;
 	}
 	else {
-		string data("INSERT INTO MEMBER (FULLNAME, IDMember, DateCreateCard) VALUES('phatxindep', 203943, 'now');");
-
-		/*string data("INSERT INTO MEMBER (FULLNAME, IDMember, DateCreateCard) VALUES( '");
-		data += fullName;
-		data += ", '";
-		data += to_string(id);
-		data += ", '";
-		data += 'now';
-		data += "');";*/
+		string data("INSERT INTO MEMBER (FULLNAME, IDMember, DateCreateCard) VALUES('" + fullName + "', '" + to_string(id) +"', '" + "2007-01-01" + "');");
+		
 		return insertData(dirLibrary, data);
 
 	}

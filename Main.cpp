@@ -6,14 +6,20 @@ using namespace std;
 
 int main()
 {
-	library l;
-	vector<vector<string>> lb = l.searchBook("L");
-	for (size_t i = 0; i < lb.size(); i++)
-	{
-		for (size_t j = 0; j < lb[i].size(); j++)
-			cout << lb[i][j] << endl;
-		cout << endl;
-	}
+	//library l{};
+	////l.classifyCategory("XXX");
+	//
+	//vector<vector<string>> lb = l.searchBook("Ah");
+	//for (size_t i = 0; i < lb.size(); i++)
+	//{
+	//	for (size_t j = 0; j < lb[i].size(); j++)
+	//		cout << lb[i][j] << endl;
+	//	cout << endl;
+	//}
 
+	member Mem{};
+	Mem.registerMember("Phat Pham", 20127680);
+	
+	
 	return 0;
 }

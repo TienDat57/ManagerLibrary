@@ -19,7 +19,7 @@ private:
 	string category; // thể loại
 	char condition;  // 'o' : cũ, 'n' : mới
 	string author;   // tác giả
-	int number;      //so luong
+	bool status;     // duoc muon hay chua
 public:
 	book(string name, string id) {
 		this->nameBook = name;

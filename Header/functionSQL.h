@@ -9,6 +9,7 @@ using namespace std;
 
 const char* dirLibrary = R"(.\Database\Library.db)";
 const char* dirBook = R"(.\Database\Book.db)";
+vector<vector<string>> listBook; // all features
 
 static int createDB(const char* dir);
 static int createTable(const char* dir, string databaseName);
@@ -146,14 +147,25 @@ static int selectData(const char* dir, string dataSelect)
 	if (exit != SQLITE_OK) {
 		cerr << "Error in selectData function." << endl;
 		sqlite3_free(messageError);
+		return 0;
 	}
-	else
+	else {
 		cout << "Records selected Successfully!" << endl;
+		return 1;
+	}
+}
 
+static int checkExist(const char* dir, string object, string data, int idx) { // idx: 0_id  1_name
+	string sql("SELECT * FROM " + object+ ";");
+	selectData(dirLibrary, sql);
+	for (int i = 0;i < listBook.size();i++) {
+		if (listBook[i][idx] == data) {
+			return 1;
+		}
+	}
 	return 0;
 }
 
-vector<vector<string>> listBook; // all features
 
 static int callback(void* NotUsed, int argc, char** argv, char** azColName)
 {
@@ -165,3 +177,5 @@ static int callback(void* NotUsed, int argc, char** argv, char** azColName)
 		temp.pop_back();
 	return 0;
 }
+
+
