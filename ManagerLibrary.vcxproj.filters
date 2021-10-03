@@ -33,5 +33,13 @@
     <ClInclude Include="Header\libraryFun.h">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="Header\openGL.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="freeglut\lib\freeglut.lib">
+      <Filter>Source Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>

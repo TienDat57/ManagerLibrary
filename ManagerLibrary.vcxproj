@@ -120,6 +120,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\ManagerLibrary1\glew-2.1.0\lib\Release\Win32;D:\ManagerLibrary1\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;openGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,6 +151,10 @@
     <ClInclude Include="Header\functionSQL.h" />
     <ClInclude Include="Header\g_class.h" />
     <ClInclude Include="Header\libraryFun.h" />
+    <ClInclude Include="Header\openGL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="freeglut\lib\freeglut.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
