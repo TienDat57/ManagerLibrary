@@ -8,9 +8,6 @@
     <Filter Include="header">
       <UniqueIdentifier>{3d541ef7-22c0-4174-a842-5a66cebfa733}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{2c34a213-c220-4b5d-9fa4-47a32d219f2d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">

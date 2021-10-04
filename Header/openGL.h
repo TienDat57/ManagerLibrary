@@ -2,29 +2,52 @@
 #include <iostream>
 #include "../glew-2.1.0/include/GL/glew.h" 
 #include "../freeglut/include/GL/freeglut.h"
-#include <sqlext.h>
-#include <sqltypes.h>
-#include <sql.h>
-#include <windows.h>
 
 #define SIZE 20
-#define SQL_RESULT_LEN 1024
-#define SQL_RETURN_CODE_LEN 1024
+#define SIZE_WIDTH_WINDOW 1100
+#define SIZE_HEIGHT_WINDOW 650
+#define TITLE_WINDOW "Library Management"
+
 using namespace std;
 
-//
-//	/* This is the settings for gl coordinate */
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//
-//	/* void glOrtho(double left, double  right, double  bottom, double  top, double  nearVal, double  farVal); */
-//	glOrtho(-50.0, 50.0, -50.0, 50.0, -1.0, 1.0);
-//}
+#pragma region _OPENGL_INIT_
 
+void initWindownOpenGL(int argc, char** argv);
+void Init();
+
+#pragma endregion
+
+
+
+#pragma region _OPENGL_EVENT_
+void MouseButton(int type, int state, int x, int y);
+
+#pragma endregion
+
+
+
+#pragma region _OPENGL_FUNCTION
+void ReShape(int width, int height);
+void drawText(const char* text, int len, int x, int y);
+void RenderScene();
+
+#pragma endregion
+
+
+void initWindownOpenGL(int argc, char** argv)
+{
+	glutInit(&argc, argv); // khoi tao glut
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); // thiet lap che do mau
+	glutInitWindowSize(SIZE_WIDTH_WINDOW, SIZE_HEIGHT_WINDOW);// thiet lap kich thuoc cua so
+	glutInitWindowPosition(100, 100);// vi tri cua so tai toa do 0 0 cua man hinh
+	glutCreateWindow(TITLE_WINDOW);
+	glutReshapeFunc(ReShape);
+	Init();
+}
 
 void Init()
 {
-	glClearColor(0,0,0,0);
+	glClearColor(0, 0, 0, 0);
 	glOrtho(-10.0, 10.0, -10.0, 10.0, 10.0, -10.0);
 }
 
@@ -37,12 +60,12 @@ void ReShape(int width, int height) // xu li su kien khi kich thuoc thay doi
    //glMatrixMode(GL_MODELVIEW);
 }
 
-void drawText(const char* text, int len, int x, int y) {
+void drawText(const char* text, int len, int x, int y)
+{
 	glMatrixMode(GL_PROJECTION);
 	double* matrix = new double[16];
 	glGetDoublev(GL_PROJECTION_MATRIX, matrix);
 	glLoadIdentity();
-
 	glOrtho(-10.0, 10.0, -10.0, 10.0, 10.0, -10.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -51,9 +74,7 @@ void drawText(const char* text, int len, int x, int y) {
 	glColor3f(1., 0., 0.);
 	glRasterPos2i(x, y);
 	for (int i = 0; i < len; i++)  // loop until i is greater then l
-	{
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, text[i]); // Print a character on the screen
-	}
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixd(matrix);
@@ -68,15 +89,13 @@ void RenderScene()
 	glViewport(50, 50, 600, 600);// khung nhin 
 
 	glBegin(GL_POLYGON); // ve hinh vuong: gl polygon
-
 	glVertex2f(-SIZE, -SIZE);
 	glVertex2f(-SIZE, SIZE);
 	glVertex2f(SIZE, SIZE);
 	glVertex2f(SIZE, -SIZE);
 	glEnd();
 
-	std::string text;
-	text = "LIBRARY MANAGEMENT";
+	std::string text = "LIBRARY MANAGEMENT";
 	drawText(text.data(), text.size(), 0, 0);
 
 	glFlush(); // sinh anh dua ra vung dem khung
@@ -107,19 +126,9 @@ void MouseButton(int type, int state, int x, int y) {
 			glVertex2f(SIZE, SIZE);
 			glVertex2f(SIZE, -SIZE);
 			glEnd();
-
 			glFlush();
 		}
 	}
 }
-
-void ScreenWindow()
-{
-	glutInitDisplayMode(GLUT_DEPTH | GLUT_SINGLE | GLUT_RGBA);
-	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(500, 500);
-	glutCreateWindow("Manager Library");
-}
-
 
 

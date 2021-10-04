@@ -1,7 +1,7 @@
 ﻿  Main.cpp
-D:\ManagerLibrary1\Header\functionSQL.h(161,19): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary1\Header\functionSQL.h(176,20): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary1\Header\libraryFun.h(27,20): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary1\Header\libraryFun.h(29,21): warning C4018: '<': signed/unsigned mismatch
-D:\ManagerLibrary1\Header\libraryFun.h(103,7): warning C4101: 't': unreferenced local variable
-  ManagerLibrary.vcxproj -> D:\ManagerLibrary1\Debug\ManagerLibrary.exe
+D:\ManagerLibrary\Header\functionSQL.h(161,19): warning C4018: '<': signed/unsigned mismatch
+D:\ManagerLibrary\Header\functionSQL.h(176,20): warning C4018: '<': signed/unsigned mismatch
+D:\ManagerLibrary\Header\libraryFun.h(27,20): warning C4018: '<': signed/unsigned mismatch
+D:\ManagerLibrary\Header\libraryFun.h(29,21): warning C4018: '<': signed/unsigned mismatch
+D:\ManagerLibrary\Header\libraryFun.h(103,7): warning C4101: 't': unreferenced local variable
+  ManagerLibrary.vcxproj -> D:\ManagerLibrary\Debug\ManagerLibrary.exe
